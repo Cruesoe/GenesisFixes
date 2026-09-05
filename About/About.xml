@@ -5,11 +5,14 @@
     <packageId>crues.cruesoesfixes</packageId>
     <description>Catch-all mod for small personal tweaks and compatibility fixes. Each fix lives in its own conditionally-loaded folder under "Mods and Shit", so it only applies when its target mod is active.
 
-Current fixes:
-- Combat Extended Guns: files the CE Artillery Howitzer under the Ferny_Weapons designation category added by Better Architect Menu instead of its default category.</description>
+Fixes included:
+- Combat Extended Guns: files the CE Artillery Howitzer under the Ferny_Weapons designation category added by Better Architect Menu, instead of its default category.
+
+(New fixes are appended to this list as they're added - see the repo's "Mods and Shit" folder for the full set.)</description>
     <supportedVersions>
         <li>1.6</li>
     </supportedVersions>
+    <!-- Add a loadAfter entry here for any mod a new fix targets, alongside the matching LoadFolders.xml line. -->
     <loadAfter>
         <li>ferny.BetterArchitect</li>
         <li>CETeam.CombatExtendedGuns</li>
