@@ -1,6 +1,6 @@
 {
-  "name": "CE Guns - Ferny Weapons Patch",
-  "workshopFolder": "CE Guns Ferny Weapons Patch",
+  "name": "Cruesoe's Fixes",
+  "workshopFolder": "Cruesoe's Fixes",
   "gameVersion": "1.6",
-  "ship": ["About", "Patches"]
+  "ship": ["About", "LoadFolders.xml", "Mods and Shit"]
 }

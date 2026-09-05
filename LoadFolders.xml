@@ -1,0 +1,9 @@
+<loadFolders>
+  <v1.6>
+    <li>/</li>
+    <li>1.6</li>
+
+    <!-- Add a new IfModActive line here for each conditionally-loaded fix under "Mods and Shit". -->
+    <li IfModActive="CETeam.CombatExtendedGuns">Mods and Shit/Combat Extended Guns</li>
+  </v1.6>
+</loadFolders>
