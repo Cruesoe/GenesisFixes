@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModMetaData>
+    <name>CE Guns - Ferny Weapons Patch</name>
+    <author>crues</author>
+    <packageId>crues.ceguns.fernyweaponspatch</packageId>
+    <description>Standalone patch that files the CE Artillery Howitzer under the Ferny_Weapons designation category added by Better Architect Menu, instead of leaving it in Combat Extended Guns' default category. Uses a conditional patch so it does nothing if the target def/xpath isn't present.</description>
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <modDependencies>
+        <li>
+            <packageId>ferny.BetterArchitect</packageId>
+            <displayName>Better Architect Menu</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/3563882422</steamWorkshopUrl>
+        </li>
+        <li>
+            <packageId>CETeam.CombatExtendedGuns</packageId>
+            <displayName>Combat Extended Guns</displayName>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>ferny.BetterArchitect</li>
+        <li>CETeam.CombatExtendedGuns</li>
+        <li>CETeam.CombatExtended</li>
+    </loadAfter>
+</ModMetaData>
