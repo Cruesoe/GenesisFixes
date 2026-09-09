@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- Inert stub so "Progression: Furniture" (ferny.progressionfurniture)'s Dinosauria-rug
+	     research patch (ve_genetics_rugs_vfe_art_research.xml) finds a def to attach
+	     researchPrerequisites to. GR_ScalyBearRug is real content from "Vanilla Genetics
+	     Expanded", but that mod only loads it when spincrus.dinosauria or
+	     BiomesTeam.BiomesPrehistoric is active (see that mod's LoadFolders.xml). Without
+	     either active, Progression: Furniture's patch throws "Failed to find a node with
+	     the given xpath" on both its match and nomatch branches. This stub exists only to
+	     satisfy that xpath - no designationCategory, no recipe produces it, and
+	     tradeability is None, so it can never be built, crafted, sold, or otherwise
+	     encountered in play. -->
+	<ThingDef>
+		<defName>GR_ScalyBearRug</defName>
+		<label>scaly bear rug (unused stub)</label>
+		<description>Placeholder def. Never spawned, built, or referenced - see Cruesoe's Temp Fixes.</description>
+		<thingClass>ThingWithComps</thingClass>
+		<category>Item</category>
+		<graphicData>
+			<texPath>Things/Building/GR_WolfRug</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Mass>5</Mass>
+		</statBases>
+		<selectable>false</selectable>
+		<tradeability>None</tradeability>
+	</ThingDef>
+
+</Defs>

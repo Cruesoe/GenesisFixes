@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Build settings, RimWorld references and the copy into 1.6\Assemblies all come
+       from _ModKit via the Directory.Build.props/.targets at the repo root. -->
+  <PropertyGroup>
+    <RootNamespace>CruesoesFixes</RootNamespace>
+    <AssemblyName>CruesoesFixes</AssemblyName>
+    <UnityModules></UnityModules>
+  </PropertyGroup>
+</Project>

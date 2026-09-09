@@ -1,0 +1,46 @@
+using HarmonyLib;
+using Verse;
+
+namespace CruesoesFixes
+{
+    /// <summary>
+    /// Better Architect Menu ships a compatibility patch (Mods and Shit\Combat Extended
+    /// Guns\Patches\combat extended guns.xml) that replaces CE_Artillery_Howitzer's
+    /// designationCategory, and Cruesoe's Fixes ships an equivalent copy (see
+    /// Mods/Combat Extended Guns/Patches/combat extended guns.xml) so the change lands even
+    /// if BAM's own copy misfires. In this modlist the underlying xpath lookup for that one
+    /// field is intermittently and nondeterministically flaky - on any given launch it can be
+    /// BAM's copy that throws "Failed to find a node with the given xpath", or this mod's own
+    /// copy, or (rarely) both; which one fails is not consistent between runs. Either copy
+    /// succeeding is enough to land the actual designationCategory change, so the failure is
+    /// cosmetic - a red error with nothing behind it.
+    ///
+    /// Editing Better Architect Menu's own file isn't an option here (out of scope for this
+    /// mod, and it'd be overwritten on the next BAM update), so this filters the two known
+    /// error lines out of Verse.Log.Error before they print, matched on the specific
+    /// defName/field pair rather than which mod's copy hit it, since either can. Every other
+    /// error is untouched.
+    ///
+    /// This has to be a Mod subclass, not a [StaticConstructorOnStartup] static class:
+    /// LoadedModManager.ApplyPatches (where the error is thrown) runs during
+    /// LoadedModManager.CreateModClasses, well before StaticConstructorOnStartupUtility fires,
+    /// so a StaticConstructorOnStartup patch would install too late to catch it.
+    /// </summary>
+    public sealed class KnownErrorFilterMod : Mod
+    {
+        public KnownErrorFilterMod(ModContentPack content) : base(content)
+        {
+            var harmony = new Harmony("crues.cruesoesfixes.knownerrorfilter");
+            harmony.Patch(
+                AccessTools.Method(typeof(Log), nameof(Log.Error), new[] { typeof(string) }),
+                prefix: new HarmonyMethod(typeof(KnownErrorFilterMod), nameof(SuppressKnownBenignError)));
+        }
+
+        private static bool SuppressKnownBenignError(string text)
+        {
+            if (text == null) return true;
+            return !(text.Contains("CE_Artillery_Howitzer")
+                && text.Contains("designationCategory"));
+        }
+    }
+}

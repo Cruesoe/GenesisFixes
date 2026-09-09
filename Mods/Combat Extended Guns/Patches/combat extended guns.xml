@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 
-		<Operation Class="PatchOperationConditional">
+		<!-- Better Architect Menu ships this same fix, but nesting a PatchOperationReplace
+		     inside a PatchOperationConditional that tests the identical xpath intermittently
+		     throws "Failed to find a node with the given xpath" in large modlists (looks like
+		     a stale xpath-cache issue in a patch-performance mod, not a missing node - the
+		     node is always present in Combat Extended Guns' Howitzer def). Doing the replace
+		     directly, with success="Always" as a safety net, avoids the repeated-xpath pattern
+		     that triggers it and keeps this silent if the target ever legitimately disappears. -->
+		<Operation Class="PatchOperationReplace" success="Always">
 			<xpath>Defs/ThingDef[defName="CE_Artillery_Howitzer"]/designationCategory</xpath>
-			<match Class="PatchOperationReplace">
-				<xpath>Defs/ThingDef[defName="CE_Artillery_Howitzer"]/designationCategory</xpath>
-				<value>
-					<designationCategory>Ferny_Weapons</designationCategory>
-				</value>
-			</match>
+			<value>
+				<designationCategory>Ferny_Weapons</designationCategory>
+			</value>
 		</Operation>
 
 </Patch>
