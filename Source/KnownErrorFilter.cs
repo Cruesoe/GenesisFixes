@@ -28,6 +28,15 @@ namespace CruesoesFixes
     /// submitted upstream at https://github.com/fernyrepos/Progression-Kitchen/pull/7; this
     /// suppression can be dropped once that merges and the fixed version ships.
     ///
+    /// Progression: Production ships an Appliances Expanded compat patch (Mods and
+    /// Shit\Appliances Expanded\Patches\appliances expanded patch.xml) that tries to relabel
+    /// "VFE_Manufacturing" via Defs/ThingDef[defName="VFE_Manufacturing"]/label and
+    /// /description, but VFE_Manufacturing is actually a ResearchProjectDef (from Vanilla
+    /// Furniture Expanded), not a ThingDef, so both xpaths never match and the relabel
+    /// silently no-ops. Fix submitted upstream at
+    /// https://github.com/fernyrepos/Progression-Production/pull/5; this suppression can be
+    /// dropped once that merges and the fixed version ships.
+    ///
     /// This has to be a Mod subclass, not a [StaticConstructorOnStartup] static class:
     /// LoadedModManager.ApplyPatches (where the error is thrown) runs during
     /// LoadedModManager.CreateModClasses, well before StaticConstructorOnStartupUtility fires,
@@ -48,6 +57,7 @@ namespace CruesoesFixes
             if (text == null) return true;
             if (text.Contains("CE_Artillery_Howitzer") && text.Contains("designationCategory")) return false;
             if (text.Contains("moas_CookStick") && text.Contains("recipeUsers") && text.Contains("Campfire")) return false;
+            if (text.Contains("VFE_Manufacturing") && text.Contains("ThingDef")) return false;
             return true;
         }
     }

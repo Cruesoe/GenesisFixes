@@ -10,6 +10,7 @@ Fixes included:
 - Combat Extended Guns: files the CE Artillery Howitzer under the Ferny_Weapons designation category added by Better Architect Menu, instead of its default category.
 - Suppresses the harmless red "Failed to find a node with the given xpath" error that Better Architect Menu's own copy of the above patch throws in large modlists (its own edit still no-ops safely; this mod's copy above still lands the actual change).
 - Progression: Furniture: adds an inert stub def for GR_ScalyBearRug (Dinosauria-only content from Vanilla Genetics Expanded) so Progression: Furniture's rug-research patch stops throwing "Failed to find a node with the given xpath" when neither Dinosauria nor Biomes: Prehistoric is active. The stub is never buildable, craftable, or sellable.
+- Suppresses the harmless red "Failed to find a node with the given xpath" error from Progression: Production's Appliances Expanded compat patch, which targets VFE_Manufacturing as a ThingDef when it's actually a ResearchProjectDef.
 
 (New fixes are appended to this list as they're added - see the repo's "Mods" folder for the full set.)</description>
     <supportedVersions>
