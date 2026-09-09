@@ -21,6 +21,13 @@ namespace CruesoesFixes
     /// defName/field pair rather than which mod's copy hit it, since either can. Every other
     /// error is untouched.
     ///
+    /// Progression: Kitchen has a similar self-inflicted conflict: its Meat On A Stick
+    /// Expansion patch deletes the moas_CookStick/moas_CookStick4 RecipeDefs outright, while
+    /// its base Meat on a Stick patch separately tries to strip Campfire out of those same two
+    /// defs' recipeUsers - which always fails since the def is already gone by then. Fix
+    /// submitted upstream at https://github.com/fernyrepos/Progression-Kitchen/pull/7; this
+    /// suppression can be dropped once that merges and the fixed version ships.
+    ///
     /// This has to be a Mod subclass, not a [StaticConstructorOnStartup] static class:
     /// LoadedModManager.ApplyPatches (where the error is thrown) runs during
     /// LoadedModManager.CreateModClasses, well before StaticConstructorOnStartupUtility fires,
@@ -39,8 +46,9 @@ namespace CruesoesFixes
         private static bool SuppressKnownBenignError(string text)
         {
             if (text == null) return true;
-            return !(text.Contains("CE_Artillery_Howitzer")
-                && text.Contains("designationCategory"));
+            if (text.Contains("CE_Artillery_Howitzer") && text.Contains("designationCategory")) return false;
+            if (text.Contains("moas_CookStick") && text.Contains("recipeUsers") && text.Contains("Campfire")) return false;
+            return true;
         }
     }
 }
