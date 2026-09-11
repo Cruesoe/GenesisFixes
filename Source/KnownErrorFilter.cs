@@ -1,12 +1,12 @@
 using HarmonyLib;
 using Verse;
 
-namespace CruesoesFixes
+namespace GenesisFixes
 {
     /// <summary>
     /// Better Architect Menu ships a compatibility patch (Mods and Shit\Combat Extended
     /// Guns\Patches\combat extended guns.xml) that replaces CE_Artillery_Howitzer's
-    /// designationCategory, and Cruesoe's Fixes ships an equivalent copy (see
+    /// designationCategory, and Genesis Fixes ships an equivalent copy (see
     /// Mods/Combat Extended Guns/Patches/combat extended guns.xml) so the change lands even
     /// if BAM's own copy misfires. In this modlist the underlying xpath lookup for that one
     /// field is intermittently and nondeterministically flaky - on any given launch it can be
@@ -37,6 +37,13 @@ namespace CruesoesFixes
     /// https://github.com/fernyrepos/Progression-Production/pull/5; this suppression can be
     /// dropped once that merges and the fixed version ships.
     ///
+    /// Progression: Arsenal's VFE Security compatibility file is loaded whenever VFE
+    /// Security is active, but two operations in that file unconditionally relabel
+    /// VWE_TrenchWarfare. That research project belongs to the separately optional
+    /// Vanilla Weapons Expanded mod, so both operations harmlessly fail when VWE is not
+    /// active. Match only those two PatchOperationReplace errors; other references to the
+    /// missing research project remain visible if they ever cause a real error.
+    ///
     /// This has to be a Mod subclass, not a [StaticConstructorOnStartup] static class:
     /// LoadedModManager.ApplyPatches (where the error is thrown) runs during
     /// LoadedModManager.CreateModClasses, well before StaticConstructorOnStartupUtility fires,
@@ -46,7 +53,7 @@ namespace CruesoesFixes
     {
         public KnownErrorFilterMod(ModContentPack content) : base(content)
         {
-            var harmony = new Harmony("crues.cruesoesfixes.knownerrorfilter");
+            var harmony = new Harmony("cruesoe.genesisfixes.knownerrorfilter");
             harmony.Patch(
                 AccessTools.Method(typeof(Log), nameof(Log.Error), new[] { typeof(string) }),
                 prefix: new HarmonyMethod(typeof(KnownErrorFilterMod), nameof(SuppressKnownBenignError)));
@@ -58,6 +65,8 @@ namespace CruesoesFixes
             if (text.Contains("CE_Artillery_Howitzer") && text.Contains("designationCategory")) return false;
             if (text.Contains("moas_CookStick") && text.Contains("recipeUsers") && text.Contains("Campfire")) return false;
             if (text.Contains("VFE_Manufacturing") && text.Contains("ThingDef")) return false;
+            if (text.Contains("PatchOperationReplace") && text.Contains("VWE_TrenchWarfare") &&
+                (text.Contains("/label") || text.Contains("/description"))) return false;
             return true;
         }
     }

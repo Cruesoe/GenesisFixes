@@ -14,11 +14,13 @@
 	<ThingDef>
 		<defName>GR_ScalyBearRug</defName>
 		<label>scaly bear rug (unused stub)</label>
-		<description>Placeholder def. Never spawned, built, or referenced - see Cruesoe's Temp Fixes.</description>
+		<description>Placeholder def. Never spawned, built, or referenced - see Genesis Fixes.</description>
 		<thingClass>ThingWithComps</thingClass>
 		<category>Item</category>
 		<graphicData>
-			<texPath>Things/Building/GR_WolfRug</texPath>
+			<!-- Use an always-present Core texture. The real rug texture is loaded only with
+			     the same optional genetics content whose absent def this stub replaces. -->
+			<texPath>Things/Item/Resource/Steel</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<statBases>

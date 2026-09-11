@@ -1,7 +1,7 @@
 {
-  "name": "Cruesoe's Fixes",
-  "assemblyName": "CruesoesFixes",
-  "workshopFolder": "Cruesoe's Fixes",
+  "name": "Genesis Fixes",
+  "assemblyName": "GenesisFixes",
+  "workshopFolder": "Genesis Fixes",
   "gameVersion": "1.6",
   "ship": ["About", "LoadFolders.xml", "Mods", "1.6"]
 }
