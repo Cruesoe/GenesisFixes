@@ -18,10 +18,15 @@
 		<thingClass>ThingWithComps</thingClass>
 		<category>Item</category>
 		<graphicData>
-			<!-- Use an always-present Core texture. The real rug texture is loaded only with
-			     the same optional genetics content whose absent def this stub replaces. -->
+			<!-- Use an always-present Core texture. Steel's own texture is split into _a/_b/_c
+			     stack-count frames rather than one flat file at this path, so this has to match
+			     Steel's own graphicClass (Graphic_StackCount) - Graphic_Single looks for a
+			     texture literally at this exact path and finds nothing, throwing a "Could not
+			     load Texture2D" error and a "MatFrom with null sourceTex" error right after it.
+			     The real rug texture is loaded only with the same optional genetics content
+			     whose absent def this stub replaces. -->
 			<texPath>Things/Item/Resource/Steel</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
+			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
 			<MaxHitPoints>100</MaxHitPoints>
