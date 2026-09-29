@@ -11,6 +11,7 @@ Fixes included:
 - Suppresses the harmless red "Failed to find a node with the given xpath" error that Better Architect Menu's own copy of the above patch throws in large modlists (its own edit still no-ops safely; this mod's copy above still lands the actual change).
 - Progression: Furniture: adds an inert stub def for GR_ScalyBearRug (Dinosauria-only content from Vanilla Genetics Expanded) so Progression: Furniture's rug-research patch stops throwing "Failed to find a node with the given xpath" when neither Dinosauria nor Biomes: Prehistoric is active. The stub is never buildable, craftable, or sellable.
 - Uses a guaranteed Core placeholder texture for that inert rug stub, avoiding a missing-texture error when the optional genetics content is absent.
+- Progression: Furniture + ReBuild: Doors and Corners: moves the fine wood floor to Progression: Furniture's Floors research.
 - Suppresses Progression: Arsenal's two harmless VWE_TrenchWarfare relabel errors when VFE Security is active without the separately optional Vanilla Weapons Expanded mod.
 - Suppresses the harmless red "Failed to find a node with the given xpath" error from Progression: Production's Appliances Expanded compat patch, which targets VFE_Manufacturing as a ThingDef when it's actually a ResearchProjectDef.
 
@@ -33,6 +34,7 @@ Fixes included:
         <li>CETeam.CombatExtended</li>
         <li>ferny.BetterArchitect</li>
         <li>ferny.progressionfurniture</li>
+        <li>ReBuild.COTR.DoorsAndCorners</li>
         <li>ferny.progressionarsenal</li>
         <li>vanillaexpanded.vfesecurity</li>
     </loadAfter>

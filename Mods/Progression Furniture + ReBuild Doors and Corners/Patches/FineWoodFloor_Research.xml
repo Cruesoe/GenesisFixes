@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- Progression: Furniture does not currently assign ReBuild's fine wood floor to
+	     its Floors research. Replace any inherited or third-party prerequisite when
+	     present; otherwise add the prerequisite directly to the terrain def. -->
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/TerrainDef[defName='RB_FinePlankWood']/researchPrerequisites</xpath>
+		<match Class="PatchOperationReplace">
+			<xpath>/Defs/TerrainDef[defName='RB_FinePlankWood']/researchPrerequisites</xpath>
+			<value>
+				<researchPrerequisites Inherit="False">
+					<li>Ferny_Floors</li>
+				</researchPrerequisites>
+			</value>
+		</match>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/TerrainDef[defName='RB_FinePlankWood']</xpath>
+			<value>
+				<researchPrerequisites Inherit="False">
+					<li>Ferny_Floors</li>
+				</researchPrerequisites>
+			</value>
+		</nomatch>
+	</Operation>
+
+</Patch>

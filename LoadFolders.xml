@@ -6,5 +6,6 @@
     <!-- Add a new IfModActive line here for each conditionally-loaded fix under "Mods". -->
     <li IfModActive="CETeam.CombatExtendedGuns">Mods/Combat Extended Guns</li>
     <li IfModActive="ferny.progressionfurniture">Mods/Progression Furniture</li>
+    <li IfModActiveAll="ferny.progressionfurniture,ReBuild.COTR.DoorsAndCorners">Mods/Progression Furniture + ReBuild Doors and Corners</li>
   </v1.6>
 </loadFolders>
