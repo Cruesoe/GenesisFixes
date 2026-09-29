@@ -3,7 +3,7 @@
     <name>Genesis Fixes</name>
     <author>cruesoe</author>
     <packageId>cruesoe.genesisfixes</packageId>
-    <modVersion>260911</modVersion>
+    <modVersion>260929</modVersion>
     <description>Small fixes, born as needed. Genesis Fixes is a catch-all mod for personal tweaks and compatibility patches - each fix lives in its own conditionally-loaded folder under "Mods", so it only applies when its target mod is active.
 
 Fixes included:
